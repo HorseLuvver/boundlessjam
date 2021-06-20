@@ -3,11 +3,11 @@ extends KinematicBody2D
 export (int) var SPEED
 onready var game = get_parent()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if game.MODE == "wander": move()
 
 func move():
-	if Input.is_action_pressed("button") and global_position.distance_to(get_global_mouse_position()) > 20:
+	if Input.is_action_pressed("button") and global_position.distance_to(get_global_mouse_position()) > 5:
 		move_and_slide(global_position.direction_to(get_global_mouse_position()) * SPEED)
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = global_position.direction_to(get_global_mouse_position()).x < 0
