@@ -1,10 +1,21 @@
 extends KinematicBody2D
 
 export (int) var SPEED
-onready var game = get_parent()
+var data = {
+	"hp":100
+}
+var nearby_animals = []
 
+func _ready():
+	randomize()
+	$DetectionRange.connect("body_entered", self, "on_body_entered")
+	$DetectionRange.connect("body_exited", self, "on_body_exited")
+	Game.world = get_parent()
+	Game.player = self
+	Game.particles = $CPUParticles2D
+	
 func _physics_process(_delta):
-	if game.MODE == "wander": move()
+	if Game.MODE == "wander": move()
 
 func move():
 	if Input.is_action_pressed("button") and global_position.distance_to(get_global_mouse_position()) > 5:
@@ -14,3 +25,11 @@ func move():
 		$AnimatedSprite/IdleTimer.stop()
 		$AnimatedSprite/IdleTimer.start(0.25)
 	elif $AnimatedSprite/IdleTimer.is_stopped(): $AnimatedSprite.play("idle")
+
+func on_body_entered(body):
+	if body.is_in_group("Animals"): nearby_animals.append(body)
+
+	
+func on_body_exited(body):
+	if body.is_in_group("Animals"): nearby_animals.erase(body)
+

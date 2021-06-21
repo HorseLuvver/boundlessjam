@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Boundless Jam"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Game="*res://Game.gd"
 
 [debug]
 
