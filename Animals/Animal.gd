@@ -37,7 +37,9 @@ func set_positions(current_position):
 func letter_recieved(letter):
 	if letter in name.to_upper() and Game.mouse_hovering == self:
 		letters[letter] = true
+		get_node("../Name/MarginContainer/HBoxContainer/%s" % letter).hide()
 		if all(letters.values()): 
+			get_node("../Name").hide()
 			queue_free()
 		
 func all(list):
@@ -48,8 +50,7 @@ func all(list):
 
 func on_mouse_entered():
 	Game.mouse_hovering = self
-	print("enter")
 	
 func on_mouse_exited():
 	#Game.mouse_hovering = null
-	print("exit")
+	pass

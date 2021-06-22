@@ -1,47 +1,64 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Battle/Letters/A/letters_A.png" type="Texture" id=1]
 [ext_resource path="res://Battle/Letters/letter_background.png" type="Texture" id=2]
+[ext_resource path="res://Minecraft/1_Minecraft-Regular.otf" type="DynamicFontData" id=3]
 
-[sub_resource type="StyleBoxTexture" id=1]
-content_margin_left = 0.0
-content_margin_right = 0.0
-content_margin_top = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 16, 16 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 3.0
-margin_bottom = 3.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 3 )
 
 [node name="Letter" type="TextureRect"]
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PopupPanel" type="PopupPanel" parent="."]
-visible = true
-margin_left = -5.0
-margin_top = -10.0
-margin_right = 9.0
-margin_bottom = -2.0
+anchor_right = 0.005
+anchor_bottom = 0.013
+margin_right = -0.12
+margin_bottom = 0.2
 grow_horizontal = 2
 grow_vertical = 2
-custom_styles/panel = SubResource( 1 )
+texture = ExtResource( 1 )
+stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel"]
+[node name="PopupPanel" type="NinePatchRect" parent="."]
+visible = false
+margin_right = 9.0
+margin_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -14.0
-margin_bottom = -8.0
+margin_left = 2.0
+margin_right = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/MarginContainer"]
+visible = false
+margin_right = 24.0
+margin_bottom = 10.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="PopupPanel/MarginContainer"]
+margin_right = 24.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "-·--·"
