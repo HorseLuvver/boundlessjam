@@ -6,6 +6,7 @@ var particles
 var dash_progress_bar
 var animals = []
 var MODE = "wander"
+var mouse_hovering
 var player_data = {
 	"hp":100
 }
@@ -45,7 +46,7 @@ func switch_scene_battle(enemy):
 			})
 	enemy_battle_data = []
 	for e in enemies:
-		enemy_battle_data.append(e.type)
+		enemy_battle_data.append(e.type.to_upper())
 	get_tree().change_scene("Battle/Battle.tscn")
 
 func set_player_data(player_):

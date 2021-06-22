@@ -23,3 +23,9 @@ zoom = Vector2( 0.2, 0.2 )
 
 [node name="Bat" parent="Creatures" instance=ExtResource( 2 )]
 position = Vector2( 226.471, 27.7183 )
+
+[node name="Bat2" parent="Creatures" instance=ExtResource( 2 )]
+position = Vector2( 269.186, 43.7364 )
+
+[node name="Bat3" parent="Creatures" instance=ExtResource( 2 )]
+position = Vector2( 170.408, 21.0441 )

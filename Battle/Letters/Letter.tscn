@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Battle/Letters/A/letters_A.png" type="Texture" id=1]
+[ext_resource path="res://Battle/Letters/letter_background.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxTexture" id=1]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 3.0
+margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Letter" type="TextureRect"]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+visible = true
+margin_left = -5.0
+margin_top = -10.0
+margin_right = 9.0
+margin_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -14.0
+margin_bottom = -8.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (int) var hp = 50
 export (int) var attack_power = 5
 export (int) var speed = 75
+var letters = {}
 var type
 var target_position
 var start_position
@@ -12,6 +13,10 @@ func _ready():
 	add_to_group("Animals")
 	$DetectionArea.connect("body_entered", self, "on_body_entered")
 	$DetectionArea.connect("body_exited", self, "on_body_exited")
+	connect("mouse_entered", self, "on_mouse_entered")
+	connect("mouse_exited", self, "on_mouse_exited")
+	for letter in name.to_upper():
+		letters[letter] = false
 
 func pick_new_target_position():
 	target_position = start_position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
@@ -28,3 +33,23 @@ func on_body_exited(body):
 func set_positions(current_position):
 	start_position = current_position
 	target_position = current_position
+
+func letter_recieved(letter):
+	if letter in name.to_upper() and Game.mouse_hovering == self:
+		letters[letter] = true
+		if all(letters.values()): 
+			queue_free()
+		
+func all(list):
+	for item in list:
+		if item == false:
+			return false
+	return true
+
+func on_mouse_entered():
+	Game.mouse_hovering = self
+	print("enter")
+	
+func on_mouse_exited():
+	#Game.mouse_hovering = null
+	print("exit")

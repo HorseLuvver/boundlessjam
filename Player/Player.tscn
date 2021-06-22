@@ -13,7 +13,6 @@ radius = 108.042
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-SPEED = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.578453, -9.6657 )
@@ -45,4 +44,5 @@ initial_velocity = 1.0
 [node name="DetectionRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+visible = false
 shape = SubResource( 3 )
