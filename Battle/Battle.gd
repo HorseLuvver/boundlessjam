@@ -8,32 +8,32 @@ export (bool) var order_required = false
 var letter_scene = preload("Letters/Letter.tscn")
 var letter = ""
 var morse_to_letters = {
-	"⋅-":"A",
-	"-⋅⋅⋅":"B",
-	"-⋅-⋅":"C",
-	"-⋅⋅":"D",
-	"⋅":"E",
-	"⋅⋅-⋅":"F",
-	"--⋅":"G",
-	"⋅⋅⋅⋅":"H",
-	"⋅⋅":"I",
-	"⋅---":"J",
-	"-⋅-":"K",
-	"⋅-⋅⋅":"L",
-	"--":"M",
-	"-⋅":"N",
-	"---":"O",
-	"⋅--⋅":"P",
-	"--⋅-":"Q",
-	"⋅-⋅":"R",
-	"⋅⋅⋅":"S",
-	"-":"T",
-	"⋅⋅-":"U",
-	"⋅⋅⋅-":"V",
-	"⋅--":"W",
-	"-⋅⋅-":"x",
-	"-⋅--":"Y",
-	"--⋅⋅":"Z",
+	"._":"A",
+	"_...":"B",
+	"_._.":"C",
+	"_..":"D",
+	".":"E",
+	".._.":"F",
+	"__.":"G",
+	"....":"H",
+	"..":"I",
+	".___":"J",
+	"_._":"K",
+	"._..":"L",
+	"__":"M",
+	"_.":"N",
+	"___":"O",
+	".__.":"P",
+	"__._":"Q",
+	"._.":"R",
+	"...":"S",
+	"_":"T",
+	".._":"U",
+	"..._":"V",
+	".__":"W",
+	"_.._":"x",
+	"_.__":"Y",
+	"__..":"Z",
 }
 var letters_to_morse = {}
 var enemy_scenes = {
@@ -73,7 +73,7 @@ func _ready():
 			letter_node.connect("mouse_exited", self, "on_mouse_exited_letter", [letter_node])
 			for symbol in letters_to_morse[l]:
 				var morse = TextureRect.new()
-				if symbol == "⋅": morse.texture = load("Battle/dot.png")
+				if symbol == ".": morse.texture = load("Battle/dot.png")
 				else: morse.texture = load("Battle/dash.png")
 				letter_node.get_node("PopupPanel/MarginContainer/HBoxContainer").add_child(morse)
 			letter_node.get_node("PopupPanel/MarginContainer/Label").text = letters_to_morse[l]
@@ -97,7 +97,7 @@ func _physics_process(delta):
 	else: $Player/ProgressBar.value = 0
 
 func on_DashTimer_timeout():
-	letter += "-"
+	letter += "_"
 
 func on_LetterTimer_timeout():
 	if letter in morse_to_letters.keys():
@@ -112,7 +112,7 @@ func interpret_morse():
 	if Input.is_action_just_released("button") and not dashtimer.is_stopped():
 		dashtimer.stop()
 		lettertimer.start()
-		letter += "⋅"
+		letter += "."
 	elif Input.is_action_just_released("button"):
 		lettertimer.start()
 	elif Input.is_action_just_pressed("button"):

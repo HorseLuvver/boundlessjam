@@ -42,6 +42,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
+margin_top = -3.0
 margin_right = -2.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,8 +58,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PopupPanel/MarginContainer"]
+margin_top = -3.0
 margin_right = 24.0
-margin_bottom = 10.0
+margin_bottom = 7.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "-·--·"
