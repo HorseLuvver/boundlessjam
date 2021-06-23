@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://grass.png" type="Texture" id=3]
+[ext_resource path="res://Battle/progress_bar.png" type="Texture" id=4]
+[ext_resource path="res://Battle/health_bar.png" type="Texture" id=5]
+[ext_resource path="res://Battle/health_bar_under.png" type="Texture" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grass.png 0"
@@ -29,19 +32,43 @@ format = 1
 tile_data = PoolIntArray( -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+max_hp = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, -70 )
 current = true
 zoom = Vector2( 0.3, 0.3 )
 
-[node name="ProgressBar" type="ProgressBar" parent="Player"]
+[node name="DashBar" type="TextureProgress" parent="Player"]
 margin_left = -16.0
 margin_top = -18.0
-margin_right = 19.0
-margin_bottom = -13.0
+margin_right = 16.0
+margin_bottom = -10.0
 max_value = 1.0
-percent_visible = false
+texture_progress = ExtResource( 4 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Player"]
+margin_left = -16.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+step = 0.01
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -109,7 +136,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EnemyPosition1/Name/MarginContainer"]
 margin_right = 25.0
-margin_bottom = 6.0
+margin_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 2
@@ -143,7 +170,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EnemyPosition2/Name/MarginContainer"]
 margin_right = 25.0
-margin_bottom = 6.0
+margin_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_constants/separation = 2

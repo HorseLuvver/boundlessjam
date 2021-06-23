@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash.png-c0e7ab30a7edee5fdd7392811f044db3.stex"
+path="res://.import/health_bar_under.png-bc13061e6ea16cfdaba6dbe32618cee2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Battle/dash.png"
-dest_files=[ "res://.import/dash.png-c0e7ab30a7edee5fdd7392811f044db3.stex" ]
+source_file="res://Battle/health_bar_under.png"
+dest_files=[ "res://.import/health_bar_under.png-bc13061e6ea16cfdaba6dbe32618cee2.stex" ]
 
 [params]
 

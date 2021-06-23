@@ -52,17 +52,30 @@ var enemy_scenes = {
 	"WALRUS":[]
 }
 
+var enemy_move_damage = {
+	"bite": 7,
+	"claw": 10,
+	"pounce": 12,
+	
+}
 func _ready():
 	for key in morse_to_letters.keys():
 		letters_to_morse[morse_to_letters[key]] = key
 	Game.player = $Player
 	Game.particles = $Player/CPUParticles2D
-	Game.dash_progress_bar = $Player/ProgressBar
+	Game.dash_progress_bar = $Player/DashBar
 	var enemies = Game.enemy_battle_data
 	for i in range(len(enemies)):
 		var enemy = enemy_scenes[enemies[i]] .instance()
 		get_node("EnemyPosition%s" % i).add_child(enemy)
+		var attack_timer = Timer.new()
+		attack_timer.name = "AttackTimer"
+		enemy.add_child(attack_timer)
+		attack_timer.wait_time = rand_range(2, 4)
+		attack_timer.connect("timeout", enemy, "on_AttackTimer_timeout")
+		attack_timer.start()
 		connect("letter", enemy, "letter_recieved")
+		enemy.connect("attack", self, "attacked")
 		enemy.input_pickable = true
 		for l in enemy.name.to_upper():
 			var letter_node = letter_scene.instance()
@@ -71,11 +84,6 @@ func _ready():
 			enemy.get_node("../Name/MarginContainer/HBoxContainer").add_child(letter_node)
 			letter_node.connect("mouse_entered", self, "on_mouse_entered_letter", [letter_node])
 			letter_node.connect("mouse_exited", self, "on_mouse_exited_letter", [letter_node])
-			for symbol in letters_to_morse[l]:
-				var morse = TextureRect.new()
-				if symbol == ".": morse.texture = load("Battle/dot.png")
-				else: morse.texture = load("Battle/dash.png")
-				letter_node.get_node("PopupPanel/MarginContainer/HBoxContainer").add_child(morse)
 			letter_node.get_node("PopupPanel/MarginContainer/Label").text = letters_to_morse[l]
 			#print(letter_node.get_node("PopupPanel/MarginContainer/Label").text)
 			letter_node.get_node("PopupPanel").rect_size = Vector2(len(letters_to_morse[l]) * 5 + 4.5, 9)
@@ -93,8 +101,8 @@ func _ready():
 	
 func _physics_process(delta): 
 	interpret_morse()
-	if dashtimer.time_left: $Player/ProgressBar.value = dashtimer.time_left / dashtime
-	else: $Player/ProgressBar.value = 0
+	if dashtimer.time_left: $Player/DashBar.value = dashtimer.time_left / dashtime
+	else: $Player/DashBar.value = 0
 
 func on_DashTimer_timeout():
 	letter += "_"
@@ -124,3 +132,9 @@ func on_mouse_entered_letter(letter_node):
 	
 func on_mouse_exited_letter(letter_node):
 	letter_node.get_node("PopupPanel").visible = false
+
+func attacked(move): #player has been attacked by a monster
+	$Player.data.hp -= enemy_move_damage[move]
+	print($Player.data.hp)
+	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp * 100
+	else: get_tree().change_scene("GameOver.tscn") 

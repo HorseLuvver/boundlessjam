@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
 export (int) var SPEED
+export (int) var max_hp
 var data = {
-	"hp":100
+	"hp":max_hp,
 }
 var nearby_animals = []
 

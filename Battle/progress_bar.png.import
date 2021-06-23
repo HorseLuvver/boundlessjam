@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dot.png-fb989714597c6413da23ae455dd0ce8a.stex"
+path="res://.import/progress_bar.png-18d6cfdccf79f8dc957ab408dfe90857.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Battle/dot.png"
-dest_files=[ "res://.import/dot.png-fb989714597c6413da23ae455dd0ce8a.stex" ]
+source_file="res://Battle/progress_bar.png"
+dest_files=[ "res://.import/progress_bar.png-18d6cfdccf79f8dc957ab408dfe90857.stex" ]
 
 [params]
 

@@ -14,6 +14,7 @@ texture = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 412.724, 28.5732 )
 SPEED = 200
+max_hp = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
