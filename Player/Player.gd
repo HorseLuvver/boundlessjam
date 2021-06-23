@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 export (int) var SPEED
-export (int) var max_hp
+export (float) var max_hp = 1
+var switch_animation
 var data = {
 	"hp":max_hp,
 }
@@ -9,6 +10,7 @@ var nearby_animals = []
 
 func _ready():
 	randomize()
+	$AnimatedSprite.connect("animation_finished", self, "on_animation_finished")
 	$DetectionRange.connect("body_entered", self, "on_body_entered")
 	$DetectionRange.connect("body_exited", self, "on_body_exited")
 	Game.world = get_parent()
@@ -34,3 +36,7 @@ func on_body_entered(body):
 func on_body_exited(body):
 	if body.is_in_group("Animals"): nearby_animals.erase(body)
 
+func on_animation_finished():
+	if switch_animation: 
+		$AnimatedSprite.play(switch_animation)
+		switch_animation = null

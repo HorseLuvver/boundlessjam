@@ -112,6 +112,8 @@ func on_LetterTimer_timeout():
 		print(morse_to_letters[letter])
 		$Player/CPUParticles2D.texture = load("res://Battle/Letters/%s/letters_%s.png" % [morse_to_letters[letter], morse_to_letters[letter]])
 		$Player/CPUParticles2D.emitting = true
+		$Player/AnimatedSprite.play("attack")
+		$Player.switch_animation = "idle"
 		emit_signal("letter", morse_to_letters[letter])
 	else: print(letter)
 	letter = ""
@@ -135,6 +137,5 @@ func on_mouse_exited_letter(letter_node):
 
 func attacked(move): #player has been attacked by a monster
 	$Player.data.hp -= enemy_move_damage[move]
-	print($Player.data.hp)
-	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp * 100
+	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	else: get_tree().change_scene("GameOver.tscn") 
