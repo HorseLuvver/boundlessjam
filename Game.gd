@@ -1,29 +1,45 @@
 extends Node2D
 
 var world
-var player setget set_player_data
+var battle
+var initial_setup = true
+var player setget set_player
 var particles
 var dash_progress_bar
 var animals = []
 var MODE = "wander"
 var mouse_hovering
-var player_data = {
-	"hp":100
+var enemy_scenes = {
+	"BAT":preload("res://Animals/Stage 1/Bat.tscn"),
+	"CAT":preload("res://Animals/Stage 1/Cat.tscn"),
+	"DOG":preload("res://Animals/Stage 1/Dog.tscn"),
+	"RAT":preload("res://Animals/Stage 1/Rat.tscn"),
+	"FISH":[],
+	"FROG":[],
+	"NEWT":[],
+	"SWAN":[],
+	"CAMEL":[],
+	"GECKO":[],
+	"EAGLE":[],
+	"SNAKE":[],
+	"WALRUS":[]
 }
-var player_pos
+var player_data = {} 
+var player_pos = Vector2()
 var enemy_world_data = {
-	"Bat":[],
-	"Cat":[],
-	"Dog":[],
-	"Rat":[],
-	"Fish":[],
-	"Frog":[],
-	"Newt":[],
-	"Swan":[],
-	"Camel":[],
-	"Gecko":[],
-	"Eagle":[],
-	"Snake":[]
+	"BAT":[],
+	"CAT":[],
+	"DOG":[],
+	"RAT":[],
+	"FISH":[],
+	"FROG":[],
+	"NEWT":[],
+	"SWAN":[],
+	"CAMEL":[],
+	"GECKO":[],
+	"EAGLE":[],
+	"SNAKE":[],
+	"WALRUS":[]
 }
 var enemy_battle_data
 
@@ -46,9 +62,16 @@ func switch_scene_battle(enemy):
 			})
 	enemy_battle_data = []
 	for e in enemies:
-		enemy_battle_data.append(e.type.to_upper())
+		enemy_battle_data.append(e.type)
+	print(enemy_battle_data)
 	get_tree().change_scene("Battle/Battle.tscn")
 
-func set_player_data(player_):
+func switch_scene_world():
+	player_data = player.data
+	MODE = "wander"
+	get_tree().change_scene("World/World.tscn")
+
+
+func set_player(player_):
 	player = player_
 	player.data = player_data

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tile_3.png-f720fcd47f3f16f8b0ed3d04a0ee57d3.stex"
+path="res://.import/Cat.png-2a0604170fba2f73b6afe9733cc36ed7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile_3.png"
-dest_files=[ "res://.import/Tile_3.png-f720fcd47f3f16f8b0ed3d04a0ee57d3.stex" ]
+source_file="res://Animals/Stage 1/Cat.png"
+dest_files=[ "res://.import/Cat.png-2a0604170fba2f73b6afe9733cc36ed7.stex" ]
 
 [params]
 

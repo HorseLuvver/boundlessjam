@@ -4,6 +4,7 @@ signal letter
 export (float) var dashtime = 0.3
 onready var dashtimer = Timer.new()
 onready var lettertimer = Timer.new()
+var enemies setget set_enemies
 export (bool) var order_required = false
 var letter_scene = preload("Letters/Letter.tscn")
 var letter = ""
@@ -36,21 +37,7 @@ var morse_to_letters = {
 	"__..":"Z",
 }
 var letters_to_morse = {}
-var enemy_scenes = {
-	"BAT":preload("res://Animals/Stage 1/Bat.tscn"),
-	"CAT":[],
-	"DOG":[],
-	"RAT":[],
-	"FISH":[],
-	"FROG":[],
-	"NEWT":[],
-	"SWAN":[],
-	"CAMEL":[],
-	"GECKO":[],
-	"EAGLE":[],
-	"SNAKE":[],
-	"WALRUS":[]
-}
+
 
 var enemy_move_damage = {
 	"bite": 7,
@@ -59,14 +46,17 @@ var enemy_move_damage = {
 	
 }
 func _ready():
+	Game.battle = self
 	for key in morse_to_letters.keys():
 		letters_to_morse[morse_to_letters[key]] = key
 	Game.player = $Player
 	Game.particles = $Player/CPUParticles2D
 	Game.dash_progress_bar = $Player/DashBar
-	var enemies = Game.enemy_battle_data
+	enemies = Game.enemy_battle_data
+	$Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	for i in range(len(enemies)):
-		var enemy = enemy_scenes[enemies[i]] .instance()
+		var enemy = Game.enemy_scenes[enemies[i]].instance()
+		enemies[i] = enemy
 		get_node("EnemyPosition%s" % i).add_child(enemy)
 		var attack_timer = Timer.new()
 		attack_timer.name = "AttackTimer"
@@ -101,8 +91,10 @@ func _ready():
 	
 func _physics_process(delta): 
 	interpret_morse()
-	if dashtimer.time_left: $Player/DashBar.value = dashtimer.time_left / dashtime
-	else: $Player/DashBar.value = 0
+	if not len(enemies): Game.switch_scene_world()
+	if dashtimer.time_left: $Player/DashBar.value = -dashtimer.time_left / dashtime
+	else: $Player/DashBar.value = -1.0
+	
 
 func on_DashTimer_timeout():
 	letter += "_"
@@ -139,3 +131,7 @@ func attacked(move): #player has been attacked by a monster
 	$Player.data.hp -= enemy_move_damage[move]
 	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	else: get_tree().change_scene("GameOver.tscn") 
+
+func set_enemies(enemies_):
+	if len(enemies_): enemies = enemies_
+	else: Game.switch_scene_world()

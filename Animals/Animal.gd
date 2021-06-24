@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var hp = 50
+export (int) var SPAWNING_RANGE = 30
 export (int) var attack_power = 5
 export (int) var speed = 75
 signal attack
@@ -13,7 +13,7 @@ var nearby_animals = []
 var switch_animation
 
 func _ready():
-	add_to_group("Animals")
+	add_to_group("animals")
 	$AnimatedSprite.connect("animation_finished", self, "on_animation_finished")
 	$DetectionArea.connect("body_entered", self, "on_body_entered")
 	$DetectionArea.connect("body_exited", self, "on_body_exited")
@@ -44,6 +44,7 @@ func letter_recieved(letter):
 		get_node("../Name/MarginContainer/HBoxContainer/%s" % letter).hide()
 		if all(letters.values()): 
 			get_node("../Name").hide()
+			Game.battle.enemies.erase(self)
 			queue_free()
 		 
 func all(list):

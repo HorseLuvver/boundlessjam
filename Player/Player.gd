@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var SPEED
 export (float) var max_hp = 1
 var switch_animation
-var data = {
+onready var data = {
 	"hp":max_hp,
 }
 var nearby_animals = []
@@ -13,9 +13,6 @@ func _ready():
 	$AnimatedSprite.connect("animation_finished", self, "on_animation_finished")
 	$DetectionRange.connect("body_entered", self, "on_body_entered")
 	$DetectionRange.connect("body_exited", self, "on_body_exited")
-	Game.world = get_parent()
-	Game.player = self
-	Game.particles = $CPUParticles2D
 	
 func _physics_process(_delta):
 	if Game.MODE == "wander": move()
