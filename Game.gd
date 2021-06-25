@@ -14,10 +14,10 @@ var enemy_scenes = {
 	"CAT":preload("res://Animals/Stage 1/Cat.tscn"),
 	"DOG":preload("res://Animals/Stage 1/Dog.tscn"),
 	"RAT":preload("res://Animals/Stage 1/Rat.tscn"),
-	"FISH":[],
-	"FROG":[],
-	"NEWT":[],
-	"SWAN":[],
+	"FISH":preload("res://Animals/Stage 2/Fish.tscn"),
+	"TOAD":preload("res://Animals/Stage 2/Toad.tscn"),
+	"HARE":preload("res://Animals/Stage 2/Hare.tscn"),
+	"SWAN":preload("res://Animals/Stage 2/Swan.tscn"),
 	"CAMEL":[],
 	"GECKO":[],
 	"EAGLE":[],
@@ -32,8 +32,8 @@ var enemy_world_data = {
 	"DOG":[],
 	"RAT":[],
 	"FISH":[],
-	"FROG":[],
-	"NEWT":[],
+	"TOAD":[],
+	"HARE":[],
 	"SWAN":[],
 	"CAMEL":[],
 	"GECKO":[],
@@ -53,6 +53,7 @@ func switch_scene_battle(enemy):
 	else: enemies += enemy.nearby_animals + player.nearby_animals
 	player_data = player.data
 	player_pos = player.global_position
+	animals = get_tree().get_nodes_in_group("animals")
 	for animal in animals:
 		if not animal in enemies:
 			enemy_world_data[animal.type].append({
@@ -63,7 +64,7 @@ func switch_scene_battle(enemy):
 	enemy_battle_data = []
 	for e in enemies:
 		enemy_battle_data.append(e.type)
-	print(enemy_battle_data)
+	print(enemies)
 	get_tree().change_scene("Battle/Battle.tscn")
 
 func switch_scene_world():
@@ -75,3 +76,8 @@ func switch_scene_world():
 func set_player(player_):
 	player = player_
 	player.data = player_data
+
+func restart():
+	initial_setup = true
+	player_pos = Vector2()
+	get_tree().change_scene("res://World/World.tscn")

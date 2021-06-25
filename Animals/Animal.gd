@@ -4,19 +4,22 @@ export (int) var SPAWNING_RANGE = 30
 export (int) var attack_power = 5
 export (int) var speed = 75
 signal attack
+var STATE = "idle"
 var moves = []
 var letters = {}
 var type
-var target_position
-var start_position
+var target_position = global_position
+var start_position = global_position
 var nearby_animals = []
 var switch_animation
 
 func _ready():
 	add_to_group("animals")
 	$AnimatedSprite.connect("animation_finished", self, "on_animation_finished")
-	$DetectionArea.connect("body_entered", self, "on_body_entered")
-	$DetectionArea.connect("body_exited", self, "on_body_exited")
+	$FightZone.connect("body_entered", self, "FightZone_on_body_entered")
+	$FightZone.connect("body_exited", self, "FightZone_on_body_exited")
+	$ChaseZone.connect("body_entered", self, "ChaseZone_on_body_entered")
+	$ChaseZone.connect("body_exited", self, "ChaseZone_on_body_exited")
 	connect("mouse_entered", self, "on_mouse_entered")
 	connect("mouse_exited", self, "on_mouse_exited")
 	for letter in name.to_upper():
@@ -25,14 +28,26 @@ func _ready():
 func pick_new_target_position():
 	target_position = start_position + Vector2(rand_range(-50, 50), rand_range(-50, 50))
 
-func on_body_entered(body):
+func FightZone_on_body_entered(body):
 	if body.name == "Player": 
 		Game.MODE = "battle"
 		Game.switch_scene_battle(self)
-	elif body.is_in_group("Animals") and body != self: nearby_animals.append(body)
 
-func on_body_exited(body):
-	if body.is_in_group("Animals"): nearby_animals.erase(body)
+func FightZone_on_body_exited(body):
+	#if body.is_in_group("animals"): nearby_animals.erase(body)
+	pass
+
+func ChaseZone_on_body_entered(body):
+	if body.name == "Player":
+		STATE = "chase"
+	elif body.is_in_group("animals"):
+		nearby_animals.append(body)
+
+func ChaseZone_on_body_exited(body):
+	if body.name == "Player":
+		STATE = pick_new_state(["idle", "wander"])
+	elif body.is_in_group("animals"):
+		nearby_animals.erase(body)
 
 func set_positions(current_position):
 	start_position = current_position
@@ -52,6 +67,10 @@ func all(list):
 		if item == false:
 			return false
 	return true
+
+func pick_new_state(states):
+	states.shuffle()
+	return states[0]
 
 func on_mouse_entered():
 	Game.mouse_hovering = self

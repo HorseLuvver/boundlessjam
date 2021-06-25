@@ -12,6 +12,7 @@ config_version=4
 
 config/name="Boundless Jam"
 run/main_scene="res://World/World.tscn"
+boot_splash/image="res://icon.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -23,6 +24,10 @@ Game="*res://Game.gd"
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/return_value_discarded=false
+
+[display]
+
+window/stretch/mode="viewport"
 
 [importer_defaults]
 
@@ -56,6 +61,15 @@ button={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Ground"
+2d_physics/layer_3="On Top (water, trees, reocks, etc.)"
+2d_physics/layer_4="Land Animals"
+2d_physics/layer_5="Water Animals"
+2d_physics/layer_6="Items"
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -66,3 +80,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

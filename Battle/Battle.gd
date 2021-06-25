@@ -1,6 +1,7 @@
 extends Node2D
 
 signal letter
+export (bool) var debug = false
 export (float) var dashtime = 0.3
 onready var dashtimer = Timer.new()
 onready var lettertimer = Timer.new()
@@ -40,9 +41,9 @@ var letters_to_morse = {}
 
 
 var enemy_move_damage = {
-	"bite": 7,
-	"claw": 10,
-	"pounce": 12,
+	"bite": 2,
+	"claw": 3,
+	"pounce": 5,
 	
 }
 func _ready():
@@ -128,7 +129,7 @@ func on_mouse_exited_letter(letter_node):
 	letter_node.get_node("PopupPanel").visible = false
 
 func attacked(move): #player has been attacked by a monster
-	$Player.data.hp -= enemy_move_damage[move]
+	if not debug: $Player.data.hp -= enemy_move_damage[move]
 	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	else: get_tree().change_scene("GameOver.tscn") 
 

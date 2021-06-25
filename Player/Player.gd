@@ -27,11 +27,11 @@ func move():
 	elif $AnimatedSprite/IdleTimer.is_stopped(): $AnimatedSprite.play("idle")
 
 func on_body_entered(body):
-	if body.is_in_group("Animals"): nearby_animals.append(body)
+	if body.is_in_group("animals"): nearby_animals.append(body)
 
 	
 func on_body_exited(body):
-	if body.is_in_group("Animals"): nearby_animals.erase(body)
+	if body.is_in_group("animals"): nearby_animals.erase(body)
 
 func on_animation_finished():
 	if switch_animation: 
