@@ -178,8 +178,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Battle" type="AudioStreamPlayer" parent="."]
+[node name="BattleTune" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+volume_db = -15.0
 
-[node name="BossBattle" type="AudioStreamPlayer" parent="."]
+[node name="BossBattleTune" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = -15.0

@@ -40,7 +40,7 @@ animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
 "name": "jab",
-"speed": 3.5
+"speed": 6.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
@@ -58,6 +58,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

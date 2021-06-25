@@ -45,7 +45,7 @@ animations = [ {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
 "name": "claw",
-"speed": 3.5
+"speed": 6.0
 } ]
 
 [sub_resource type="CircleShape2D" id=8]
@@ -59,7 +59,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

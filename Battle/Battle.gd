@@ -82,6 +82,7 @@ func _ready():
 		enemy.get_node("../Name").rect_size = Vector2(len(enemy.name) * 7 + 2, 12)
 		enemy.get_node("../Name").rect_position = Vector2(-len(enemy.name) * 3 - 0.5, -20)
 		enemy.get_node("../Name").visible = true
+		$BossBattleTune.play()
 	else: for i in range(len(enemies)):
 		var enemy = Game.enemy_scenes[enemies[i]].instance()
 		enemies[i] = enemy
@@ -109,6 +110,7 @@ func _ready():
 		enemy.get_node("../Name").rect_size = Vector2(len(enemy.name) * 7 + 2, 12)
 		enemy.get_node("../Name").rect_position = Vector2(-len(enemy.name) * 3 - 0.5, -20)
 		enemy.get_node("../Name").visible = true
+		$BattleTune.play()
 	add_child(dashtimer)
 	add_child(lettertimer)
 	dashtimer.one_shot = true

@@ -40,7 +40,7 @@ animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
 "name": "pounce",
-"speed": 3.5
+"speed": 6.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,

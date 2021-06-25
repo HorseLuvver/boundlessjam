@@ -40,12 +40,12 @@ animations = [ {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "jab",
-"speed": 3.5
+"speed": 6.0
 }, {
 "frames": [ SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "fly",
-"speed": 5.0
+"speed": 3.5
 } ]
 
 [sub_resource type="CircleShape2D" id=6]
@@ -58,7 +58,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -75,6 +74,7 @@ shape = ExtResource( 3 )
 [node name="ChaseZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseZone"]
+visible = false
 shape = ExtResource( 4 )
 
 [node name="WanderTimer" type="Timer" parent="."]

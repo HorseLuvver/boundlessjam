@@ -4,8 +4,9 @@ export (int) var SPAWNING_RANGE = 300
 export (int) var WANDER_RANGE = 50
 export (int) var attack_power = 5
 export (int) var speed = 40
+export (int) var strength = 1
 signal attack
-var STATE = "wander"
+var STATE = "idle"
 var move_anim_name = "walk"
 var moves = []
 var letters = {}
@@ -39,8 +40,8 @@ func _physics_process(delta):
 	var velocity = Vector2()
 	match STATE:
 		"idle":
-			$AnimatedSprite.play("idle")
-			if $StateChangeTimer.is_stopped(): 
+			if Game.MODE == "wander": $AnimatedSprite.play("idle")
+			if $StateChangeTimer.is_stopped() and Game.MODE == "wander": 
 				STATE = Game.pick_one(["idle", "wander"])
 				$StateChangeTimer.start(rand_range(1, 3))
 		"wander":
@@ -54,6 +55,7 @@ func _physics_process(delta):
 		"chase":
 			$AnimatedSprite.play(move_anim_name)
 			if player != null: velocity = position.direction_to(player.position) * speed
+			else: STATE = Game.pick_one(["idle", "wander"])
 	$AnimatedSprite.flip_h = velocity.x < 0
 	move_and_slide(velocity)
 
@@ -70,7 +72,7 @@ func FightZone_on_body_exited(body):
 	pass
 
 func ChaseZone_on_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and Game.MODE == "wander":
 		STATE = "chase"
 		player = body
 	elif body.is_in_group("animals"):

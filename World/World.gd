@@ -29,21 +29,42 @@ func on_SpawnTimer_timeout(stage):
 	match stage:
 		1:
 			if $Stage1Spawner.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
-				var animals = []
-				for animal in Game.enemy_scenes.keys():
-					if len(animal) == 3: animals.append(animal)
+				var animals = ["BAT", "RAT", "CAT", "DOG"]
 				var animal = Game.pick_one(animals)
 				animal = Game.enemy_scenes[animal].instance()
 				animal.position = $Stage1Spawner.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
 				$YSort/Creatures.add_child(animal)
-		2:
-			if $Stage2Spawner.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
-				var animals = []
-				for animal in Game.enemy_scenes.keys():
-					if len(animal) == 4: animals.append(animal)
+			if $Stage1Spawner2.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = ["BAT", "RAT", "CAT", "DOG"]
 				var animal = Game.pick_one(animals)
 				animal = Game.enemy_scenes[animal].instance()
-				animal.position = $Stage2Spawner.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				animal.position = $Stage1Spawner2.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				$YSort/Creatures.add_child(animal)
+		2:
+			if $Stage2SpawnerWater.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = ["SWAN", "FISH"]
+				var animal = Game.pick_one(animals)
+				animal = Game.enemy_scenes[animal].instance()
+				animal.position = $Stage2SpawnerWater.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				$YSort/Creatures.add_child(animal)
+			if $Stage2SpawnerLand.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = ["SWAN", "HARE", "TOAD"]
+				var animal = Game.pick_one(animals)
+				animal = Game.enemy_scenes[animal].instance()
+				animal.position = $Stage2SpawnerLand.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				$YSort/Creatures.add_child(animal)
+		3:
+			if $Stage3Spawner.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = ["CAMEL", "EAGLE", "SNAKE", "HYENA"]
+				var animal = Game.pick_one(animals)
+				animal = Game.enemy_scenes[animal].instance()
+				animal.position = $Stage3Spawner.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				$YSort/Creatures.add_child(animal)
+			if $Stage3Spawner2.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = ["CAMEL", "EAGLE", "SNAKE", "HYENA"]
+				var animal = Game.pick_one(animals)
+				animal = Game.enemy_scenes[animal].instance()
+				animal.position = $Stage3Spawner2.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
 				$YSort/Creatures.add_child(animal)
 		_:
 			pass

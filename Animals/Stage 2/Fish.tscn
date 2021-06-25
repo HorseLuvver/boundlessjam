@@ -40,7 +40,7 @@ animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": false,
 "name": "pounce",
-"speed": 3.5
+"speed": 6.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
@@ -55,10 +55,12 @@ radius = 5.65471
 collision_layer = 32
 collision_mask = 17
 script = ExtResource( 2 )
+SPAWNING_RANGE = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 15 )
 animation = "idle"
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
