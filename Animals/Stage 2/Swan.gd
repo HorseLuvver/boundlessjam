@@ -6,3 +6,4 @@ func _ready():
 	set_positions(global_position)
 	type = "SWAN"
 	moves = ["jab"]
+	move_anim_name = "fly"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Walrus_wont_get_us.ogg-06bb7f18bb0578d48c0a2ca068f57c26.oggstr"
+
+[deps]
+
+source_file="res://Battle/Walrus_wont_get_us.ogg"
+dest_files=[ "res://.import/Walrus_wont_get_us.ogg-06bb7f18bb0578d48c0a2ca068f57c26.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -6,3 +6,4 @@ func _ready():
 	set_positions(global_position)
 	type = "FISH"
 	moves = ["pounce"]
+	move_anim_name = "swim"

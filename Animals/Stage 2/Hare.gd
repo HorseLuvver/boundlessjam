@@ -6,3 +6,4 @@ func _ready():
 	set_positions(global_position)
 	type = "HARE"
 	moves = ["claw"]
+	move_anim_name = "hop"

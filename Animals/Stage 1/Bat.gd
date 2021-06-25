@@ -6,3 +6,4 @@ func _ready():
 	set_positions(global_position)
 	type = "BAT"
 	moves = ["jab"]
+	move_anim_name = "fly"

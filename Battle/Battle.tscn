@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Battle/health_bar_under.png" type="Texture" id=6]
 [ext_resource path="res://Battle/progress_bar_under.png" type="Texture" id=7]
 [ext_resource path="res://World/ground.tres" type="TileSet" id=8]
+[ext_resource path="res://Battle/Bat_Battle.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Battle/Walrus_wont_get_us.ogg" type="AudioStream" id=10]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 1 )
@@ -175,3 +177,9 @@ custom_constants/separation = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Battle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="BossBattle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )

@@ -13,7 +13,6 @@ func _ready():
 	if Game.initial_setup: Game.player_data = $YSort/Player.data
 	Game.player = $YSort/Player
 	Game.particles = $YSort/Player/CPUParticles2D
-	Game.animals = $YSort/Creatures.get_children()
 	
 	for animal_type in Game.enemy_world_data.keys():
 		for animal in Game.enemy_world_data[animal_type]:
@@ -33,12 +32,19 @@ func on_SpawnTimer_timeout(stage):
 				var animals = []
 				for animal in Game.enemy_scenes.keys():
 					if len(animal) == 3: animals.append(animal)
-				animals.shuffle()
-				var animal = animals[0]
+				var animal = Game.pick_one(animals)
 				animal = Game.enemy_scenes[animal].instance()
 				animal.position = $Stage1Spawner.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
 				$YSort/Creatures.add_child(animal)
-				Game.animals.append(animal)
-
-
+		2:
+			if $Stage2Spawner.position.distance_to($YSort/Player.position) > MIN_DISTANCE and len(get_tree().get_nodes_in_group("animals/stage 1")) < MAX_STAGE_1_ANIMALS:
+				var animals = []
+				for animal in Game.enemy_scenes.keys():
+					if len(animal) == 4: animals.append(animal)
+				var animal = Game.pick_one(animals)
+				animal = Game.enemy_scenes[animal].instance()
+				animal.position = $Stage2Spawner.position + Vector2(rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE), rand_range(-animal.SPAWNING_RANGE, animal.SPAWNING_RANGE))
+				$YSort/Creatures.add_child(animal)
+		_:
+			pass
 

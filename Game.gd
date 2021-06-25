@@ -6,7 +6,6 @@ var initial_setup = true
 var player setget set_player
 var particles
 var dash_progress_bar
-var animals = []
 var MODE = "wander"
 var mouse_hovering
 var enemy_scenes = {
@@ -19,7 +18,7 @@ var enemy_scenes = {
 	"HARE":preload("res://Animals/Stage 2/Hare.tscn"),
 	"SWAN":preload("res://Animals/Stage 2/Swan.tscn"),
 	"CAMEL":[],
-	"GECKO":[],
+	"HYENA":[],
 	"EAGLE":[],
 	"SNAKE":[],
 	"WALRUS":[]
@@ -36,7 +35,7 @@ var enemy_world_data = {
 	"HARE":[],
 	"SWAN":[],
 	"CAMEL":[],
-	"GECKO":[],
+	"HYENA":[],
 	"EAGLE":[],
 	"SNAKE":[],
 	"WALRUS":[]
@@ -53,7 +52,7 @@ func switch_scene_battle(enemy):
 	else: enemies += enemy.nearby_animals + player.nearby_animals
 	player_data = player.data
 	player_pos = player.global_position
-	animals = get_tree().get_nodes_in_group("animals")
+	var animals = get_tree().get_nodes_in_group("animals")
 	for animal in animals:
 		if not animal in enemies:
 			enemy_world_data[animal.type].append({
@@ -64,7 +63,7 @@ func switch_scene_battle(enemy):
 	enemy_battle_data = []
 	for e in enemies:
 		enemy_battle_data.append(e.type)
-	print(enemies)
+	if enemy.type == "WALRUS": enemy_battle_data = ["WALRUS"]
 	get_tree().change_scene("Battle/Battle.tscn")
 
 func switch_scene_world():
@@ -81,3 +80,7 @@ func restart():
 	initial_setup = true
 	player_pos = Vector2()
 	get_tree().change_scene("res://World/World.tscn")
+
+func pick_one(options):
+	options.shuffle()
+	return options[0]

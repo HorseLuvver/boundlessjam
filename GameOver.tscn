@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://1_Minecraft-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://GameOver.gd" type="Script" id=2]
+[ext_resource path="res://SOS_IM_DEAD.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -32,3 +33,7 @@ margin_top = 347.527
 margin_right = 575.146
 margin_bottom = 433.527
 text = "Restart"
+
+[node name="GameOverTune" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true

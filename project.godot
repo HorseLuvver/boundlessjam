@@ -65,10 +65,11 @@ button={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Ground"
-2d_physics/layer_3="On Top (water, trees, reocks, etc.)"
-2d_physics/layer_4="Land Animals"
-2d_physics/layer_5="Water Animals"
-2d_physics/layer_6="Items"
+2d_physics/layer_3="On Top (trees, rocks, etc.)"
+2d_physics/layer_4="Water"
+2d_physics/layer_5="Antiwater"
+2d_physics/layer_6="Animals"
+2d_physics/layer_7="Items"
 
 [physics]
 

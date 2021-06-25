@@ -44,6 +44,7 @@ var enemy_move_damage = {
 	"bite": 2,
 	"claw": 3,
 	"pounce": 5,
+	"jab": 4
 	
 }
 func _ready():
@@ -55,7 +56,33 @@ func _ready():
 	Game.dash_progress_bar = $Player/DashBar
 	enemies = Game.enemy_battle_data
 	$Player/HealthBar.value = $Player.data.hp / $Player.max_hp
-	for i in range(len(enemies)):
+	if enemies == ["WALRUS"]:
+		var enemy = Game.enemy_scenes["WALRUS"].instance()
+		$EnemyPosition1.add_child(enemy)
+		var attack_timer = Timer.new()
+		attack_timer.name = "AttackTimer"
+		enemy.add_child(attack_timer)
+		attack_timer.wait_time = rand_range(2, 4)
+		attack_timer.connect("timeout", enemy, "on_AttackTimer_timeout")
+		attack_timer.start()
+		connect("letter", enemy, "letter_recieved")
+		enemy.connect("attack", self, "attacked")
+		enemy.input_pickable = true
+		for l in enemy.name.to_upper():
+			var letter_node = letter_scene.instance()
+			letter_node.texture = load("res://Battle/Letters/%s/letters_%s.png" % [l, l])
+			letter_node.name = l
+			enemy.get_node("../Name/MarginContainer/HBoxContainer").add_child(letter_node)
+			letter_node.connect("mouse_entered", self, "on_mouse_entered_letter", [letter_node])
+			letter_node.connect("mouse_exited", self, "on_mouse_exited_letter", [letter_node])
+			letter_node.get_node("PopupPanel/MarginContainer/Label").text = letters_to_morse[l]
+			#print(letter_node.get_node("PopupPanel/MarginContainer/Label").text)
+			letter_node.get_node("PopupPanel").rect_size = Vector2(len(letters_to_morse[l]) * 5 + 4.5, 9)
+			letter_node.get_node("PopupPanel").rect_position = Vector2(-len(letters_to_morse[l]) * 2.5 - 0.5, -12)
+		enemy.get_node("../Name").rect_size = Vector2(len(enemy.name) * 7 + 2, 12)
+		enemy.get_node("../Name").rect_position = Vector2(-len(enemy.name) * 3 - 0.5, -20)
+		enemy.get_node("../Name").visible = true
+	else: for i in range(len(enemies)):
 		var enemy = Game.enemy_scenes[enemies[i]].instance()
 		enemies[i] = enemy
 		get_node("EnemyPosition%s" % i).add_child(enemy)
