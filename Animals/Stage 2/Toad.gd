@@ -7,3 +7,4 @@ func _ready():
 	type = "TOAD"
 	moves = ["pounce"]
 	move_anim_name = "jump"
+	strength = 1.5

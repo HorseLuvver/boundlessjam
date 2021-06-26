@@ -6,3 +6,4 @@ func _ready():
 	set_positions(global_position)
 	type = "CAMEL"
 	moves = ["pounce"]
+	strength = 2

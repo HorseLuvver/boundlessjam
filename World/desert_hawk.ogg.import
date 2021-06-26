@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/desert_hawk.ogg-d53d824a301a25c1abc100a799fc5648.oggstr"
+
+[deps]
+
+source_file="res://World/desert_hawk.ogg"
+dest_files=[ "res://.import/desert_hawk.ogg-d53d824a301a25c1abc100a799fc5648.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

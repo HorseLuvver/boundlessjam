@@ -15,7 +15,7 @@ func _ready():
 	$DetectionRange.connect("body_exited", self, "on_body_exited")
 	
 func _physics_process(_delta):
-	if Game.MODE == "wander": move()
+	if Game.MODE == "wander" and Game.selected_item == null: move()
 
 func move():
 	if Input.is_action_pressed("button") and global_position.distance_to(get_global_mouse_position()) > 5:

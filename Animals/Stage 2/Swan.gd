@@ -7,3 +7,4 @@ func _ready():
 	type = "SWAN"
 	moves = ["jab"]
 	move_anim_name = "fly"
+	strength = 1.5

@@ -7,3 +7,4 @@ func _ready():
 	type = "EAGLE"
 	moves = ["jab"]
 	move_anim_name = "fly"
+	

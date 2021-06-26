@@ -168,7 +168,7 @@ func on_mouse_exited_letter(letter_node):
 	letter_node.get_node("PopupPanel").visible = false
 
 func attacked(move, enemy): #player has been attacked by a monster
-	$Player.data.hp -= enemy_move_damage[move] * enemy.strength
+	$Player.data.hp -= enemy_move_damage[move] * enemy.strength * (1 - Game.xp)
 	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	else: get_tree().change_scene("GameOver.tscn") 
 
@@ -179,12 +179,15 @@ func on_enemy_killed(type, parent):
 		"BAT", "CAT", "DOG", "RAT":
 			potion.texture = load("Items/Potions_and_shield_4.png")
 			potion.connect("mouse_entered", Game, "pick_up_potion", ["small", potion])
+			if Game.xp < 0.7: Game.xp += 0.1
 		"FISH", "HARE", "SWAN", "TOAD":
 			potion.texture = load("Items/Potions_and_shield_3.png")
 			potion.connect("mouse_entered", Game, "pick_up_potion", ["medium", potion])
+			if Game.xp < 0.7: Game.xp += 0.2
 		"CAMEL", "EAGLE", "HYENA", "SNAKE":
 			potion.texture = load("Items/Potions_and_shield_3.png")
 			potion.connect("mouse_entered", Game, "pick_up_potion", ["large", potion])
+			if Game.xp < 0.7: Game.xp += 0.3
 		_:
 			print("super rare")
 	parent.add_child(potion)

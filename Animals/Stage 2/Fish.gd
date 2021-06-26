@@ -7,3 +7,4 @@ func _ready():
 	type = "FISH"
 	moves = ["pounce"]
 	move_anim_name = "swim"
+	strength = 1.5

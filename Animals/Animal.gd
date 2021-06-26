@@ -1,10 +1,11 @@
 extends KinematicBody2D
 
-export (int) var SPAWNING_RANGE = 300
-export (int) var WANDER_RANGE = 50
-export (int) var attack_power = 5
-export (int) var speed = 40
-export (int) var strength = 1
+var SPAWNING_RANGE = 300
+var DESPAWN_RANGE = 750
+var WANDER_RANGE = 50
+var attack_power = 5
+var speed = 40
+var strength = 1
 signal attack
 signal killed
 var STATE = "idle"
@@ -38,6 +39,9 @@ func _ready():
 		letters[letter] = false
 
 func _physics_process(delta):
+	if position.distance_to(Game.player.position) > DESPAWN_RANGE and type != "WALRUS": 
+		print(type, " despawned")
+		queue_free()
 	var velocity = Vector2()
 	match STATE:
 		"idle":
@@ -76,12 +80,12 @@ func ChaseZone_on_body_entered(body):
 	if body.name == "Player" and Game.MODE == "wander":
 		STATE = "chase"
 		player = body
-	elif body.is_in_group("animals"):
+	elif body.is_in_group("animals") and body != self:
 		nearby_animals.append(body)
 
 func ChaseZone_on_body_exited(body):
 	if body.name == "Player":
-		STATE = "wander"
+		STATE = Game.pick_one(["idle", "wander"])
 		player = null
 	elif body.is_in_group("animals"):
 		nearby_animals.erase(body)

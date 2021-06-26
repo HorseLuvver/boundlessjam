@@ -7,3 +7,4 @@ func _ready():
 	type = "SNAKE"
 	moves = ["bite"]
 	move_anim_name = "slither"
+	strength = 2

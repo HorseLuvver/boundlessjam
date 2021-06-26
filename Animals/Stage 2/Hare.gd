@@ -7,3 +7,4 @@ func _ready():
 	type = "HARE"
 	moves = ["claw"]
 	move_anim_name = "hop"
+	strength = 1.5

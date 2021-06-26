@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/waterfally_laky_theme_even_if_there_aint_no_watterfall.ogg-4a9fde340b174c221c76910e576c761d.oggstr"
+
+[deps]
+
+source_file="res://World/waterfally_laky_theme_even_if_there_aint_no_watterfall.ogg"
+dest_files=[ "res://.import/waterfally_laky_theme_even_if_there_aint_no_watterfall.ogg-4a9fde340b174c221c76910e576c761d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

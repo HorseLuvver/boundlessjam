@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -10,21 +10,7 @@
 [ext_resource path="res://World/ground.tres" type="TileSet" id=8]
 [ext_resource path="res://Battle/Bat_Battle.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Battle/Walrus_wont_get_us.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Items/Potions_and_shield_3.png" type="Texture" id=11]
-[ext_resource path="res://Items/Potions_and_shield_1.png" type="Texture" id=12]
-[ext_resource path="res://Items/Potions_and_shield_2.png" type="Texture" id=13]
-[ext_resource path="res://1_Minecraft-Regular.otf" type="DynamicFontData" id=14]
-[ext_resource path="res://Items/Potions_and_shield_4.png" type="Texture" id=15]
-
-[sub_resource type="DynamicFont" id=3]
-size = 8
-font_data = ExtResource( 14 )
-
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 3 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.784314 )
+[ext_resource path="res://Items/Inventory.tscn" type="PackedScene" id=11]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,102 +35,7 @@ position = Vector2( 0, -70 )
 current = true
 zoom = Vector2( 0.3, 0.3 )
 
-[node name="Inventory" type="Panel" parent="Player/Camera2D"]
-margin_left = 73.0
-margin_top = -90.0
-margin_right = 154.0
-margin_bottom = -68.0
-theme = SubResource( 4 )
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Player/Camera2D/Inventory"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
-__meta__ = {
-"_edit_use_anchors_": true,
-"_editor_description_": ""
-}
-
-[node name="shield" type="TextureRect" parent="Player/Camera2D/Inventory/HBoxContainer"]
-margin_right = 16.0
-margin_bottom = 18.0
-texture = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="small_potion" type="TextureRect" parent="Player/Camera2D/Inventory/HBoxContainer"]
-margin_left = 20.0
-margin_right = 36.0
-margin_bottom = 18.0
-texture = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Amount" type="Label" parent="Player/Camera2D/Inventory/HBoxContainer/small_potion"]
-margin_left = 11.0
-margin_top = 7.0
-margin_right = 21.0
-margin_bottom = 24.0
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="medium_potion" type="TextureRect" parent="Player/Camera2D/Inventory/HBoxContainer"]
-margin_left = 40.0
-margin_right = 56.0
-margin_bottom = 18.0
-texture = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Amount" type="Label" parent="Player/Camera2D/Inventory/HBoxContainer/medium_potion"]
-margin_left = 10.0
-margin_top = 9.0
-margin_right = 21.0
-margin_bottom = 23.0
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="large_potion" type="TextureRect" parent="Player/Camera2D/Inventory/HBoxContainer"]
-margin_left = 60.0
-margin_right = 76.0
-margin_bottom = 18.0
-texture = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Amount" type="Label" parent="Player/Camera2D/Inventory/HBoxContainer/large_potion"]
-margin_left = 9.39999
-margin_top = 9.0
-margin_right = 20.4
-margin_bottom = 23.0
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Inventory" parent="Player/Camera2D" instance=ExtResource( 11 )]
 
 [node name="DashBar" type="TextureProgress" parent="Player"]
 margin_left = -16.0
@@ -167,10 +58,10 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="Player"]
-margin_left = -16.0
-margin_top = 8.0
-margin_right = 16.0
-margin_bottom = 16.0
+margin_left = 119.0
+margin_top = -136.0
+margin_right = 151.0
+margin_bottom = -128.0
 max_value = 1.0
 step = 0.01
 value = 1.0
