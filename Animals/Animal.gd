@@ -6,6 +6,7 @@ export (int) var attack_power = 5
 export (int) var speed = 40
 export (int) var strength = 1
 signal attack
+signal killed
 var STATE = "idle"
 var move_anim_name = "walk"
 var moves = []
@@ -96,6 +97,8 @@ func letter_recieved(letter):
 		if all(letters.values()): 
 			get_node("../Name").hide()
 			Game.battle.enemies.erase(self)
+			Game.mouse_hovering = null
+			emit_signal("killed", type, get_parent())
 			queue_free()
 		 
 func all(list):
@@ -115,12 +118,12 @@ func on_mouse_exited():
 	pass
 
 func attack(move):
-	emit_signal("attack", move)
+	emit_signal("attack", move, self)
 	$AnimatedSprite.play(move)
 	switch_animation = "idle"
 
 func on_AttackTimer_timeout():
-	attack(moves[0])
+	attack(Game.pick_one(moves))
 
 	
 func on_WanderTimer_timeout():

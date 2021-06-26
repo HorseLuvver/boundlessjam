@@ -1,11 +1,12 @@
 extends Node2D
 
 signal letter
-export (bool) var debug = false
+export (int) var POTION_DROP_CHANCE = 1 #chance is 1/_
 export (float) var dashtime = 0.3
 onready var dashtimer = Timer.new()
 onready var lettertimer = Timer.new()
 var enemies setget set_enemies
+var potions = []
 export (bool) var order_required = false
 var letter_scene = preload("Letters/Letter.tscn")
 var letter = ""
@@ -41,10 +42,10 @@ var letters_to_morse = {}
 
 
 var enemy_move_damage = {
-	"bite": 2,
-	"claw": 3,
-	"pounce": 5,
-	"jab": 4
+	"bite": 0.5,
+	"claw": 1,
+	"pounce": 2,
+	"jab": 1.5
 	
 }
 func _ready():
@@ -54,6 +55,13 @@ func _ready():
 	Game.player = $Player
 	Game.particles = $Player/CPUParticles2D
 	Game.dash_progress_bar = $Player/DashBar
+	Game.inventory_node = $Player/Camera2D/Inventory
+	Game.inventory_nodes.small_potion.connect("mouse_entered", Game, "on_mouse_entered_item", ["small_potion"])
+	Game.inventory_nodes.small_potion.connect("mouse_exited", Game, "on_mouse_exited_item", ["small_potion"])
+	Game.inventory_nodes.medium_potion.connect("mouse_entered", Game, "on_mouse_entered_item", ["medium_potion"])
+	Game.inventory_nodes.medium_potion.connect("mouse_exited", Game, "on_mouse_exited_item", ["medium_potion"])
+	Game.inventory_nodes.large_potion.connect("mouse_entered", Game, "on_mouse_entered_item", ["large_potion"])
+	Game.inventory_nodes.large_potion.connect("mouse_exited", Game, "on_mouse_exited_item", ["large_potion"])
 	enemies = Game.enemy_battle_data
 	$Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	if enemies == ["WALRUS"]:
@@ -95,6 +103,7 @@ func _ready():
 		attack_timer.start()
 		connect("letter", enemy, "letter_recieved")
 		enemy.connect("attack", self, "attacked")
+		enemy.connect("killed", self, "on_enemy_killed")
 		enemy.input_pickable = true
 		for l in enemy.name.to_upper():
 			var letter_node = letter_scene.instance()
@@ -120,8 +129,9 @@ func _ready():
 	lettertimer.connect("timeout", self, "on_LetterTimer_timeout")
 	
 func _physics_process(delta): 
-	interpret_morse()
-	if not len(enemies): Game.switch_scene_world()
+	if not Game.selected_item: interpret_morse()
+	elif Input.is_action_just_pressed("button"): Game.use_item()
+	if not len(enemies) and not len(potions): Game.switch_scene_world()
 	if dashtimer.time_left: $Player/DashBar.value = -dashtimer.time_left / dashtime
 	else: $Player/DashBar.value = -1.0
 	
@@ -157,10 +167,28 @@ func on_mouse_entered_letter(letter_node):
 func on_mouse_exited_letter(letter_node):
 	letter_node.get_node("PopupPanel").visible = false
 
-func attacked(move): #player has been attacked by a monster
-	if not debug: $Player.data.hp -= enemy_move_damage[move]
+func attacked(move, enemy): #player has been attacked by a monster
+	$Player.data.hp -= enemy_move_damage[move] * enemy.strength
 	if $Player.data.hp > 0: $Player/HealthBar.value = $Player.data.hp / $Player.max_hp
 	else: get_tree().change_scene("GameOver.tscn") 
+
+func on_enemy_killed(type, parent):
+	if not randi() % POTION_DROP_CHANCE == 0: return
+	var potion = TextureRect.new()
+	match type:
+		"BAT", "CAT", "DOG", "RAT":
+			potion.texture = load("Items/Potions_and_shield_4.png")
+			potion.connect("mouse_entered", Game, "pick_up_potion", ["small", potion])
+		"FISH", "HARE", "SWAN", "TOAD":
+			potion.texture = load("Items/Potions_and_shield_3.png")
+			potion.connect("mouse_entered", Game, "pick_up_potion", ["medium", potion])
+		"CAMEL", "EAGLE", "HYENA", "SNAKE":
+			potion.texture = load("Items/Potions_and_shield_3.png")
+			potion.connect("mouse_entered", Game, "pick_up_potion", ["large", potion])
+		_:
+			print("super rare")
+	parent.add_child(potion)
+	potions.append(potion)
 
 func set_enemies(enemies_):
 	if len(enemies_): enemies = enemies_
