@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crunchy_crunch.ogg-e9baa629a7531a78640231c88f222985.oggstr"
+
+[deps]
+
+source_file="res://Animals/Boss/crunchy_crunch.ogg"
+dest_files=[ "res://.import/crunchy_crunch.ogg-e9baa629a7531a78640231c88f222985.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

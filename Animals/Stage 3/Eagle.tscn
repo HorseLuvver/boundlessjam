@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Animals/Stage 3/Eagle.gd" type="Script" id=1]
 [ext_resource path="res://Animals/Stage 3/Eagle.png" type="Texture" id=2]
 [ext_resource path="res://Animals/animal_selection_box.png" type="Texture" id=3]
 [ext_resource path="res://Animals/animal_chase_range.tres" type="Shape2D" id=4]
 [ext_resource path="res://Animals/animal_fight_range.tres" type="Shape2D" id=5]
+[ext_resource path="res://Battle/fhssss.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Battle/Punch.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -16,19 +18,19 @@ region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 64, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 64, 32, 32 )
+region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 32, 64, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -38,14 +40,38 @@ animations = [ {
 "speed": 2.5
 }, {
 "frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": false,
-"name": "jab",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "fly",
 "speed": 3.5
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "jab",
+"speed": 6.0
+} ]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 7 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), null ],
+"loop": false,
+"name": "punch",
+"speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=8]
@@ -58,7 +84,18 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
+
+[node name="AnimationPlayer" type="AnimatedSprite" parent="AnimatedSprite"]
+position = Vector2( 0.1875, 3.9375 )
+frames = SubResource( 23 )
+animation = "punch"
+frame = 4
+playing = true
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -85,3 +122,6 @@ visible = false
 position = Vector2( 0, 7.745 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
+
+[node name="jab" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )

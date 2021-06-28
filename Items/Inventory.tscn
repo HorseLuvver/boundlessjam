@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://1_Minecraft-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/1_Minecraft-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Items/potion_2.png" type="Texture" id=2]
 [ext_resource path="res://Items/potion_1.png" type="Texture" id=3]
 [ext_resource path="res://Items/potion_3.png" type="Texture" id=4]

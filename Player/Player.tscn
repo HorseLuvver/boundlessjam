@@ -1,14 +1,148 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Player/player_frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Battle/Claw.png" type="Texture" id=3]
+[ext_resource path="res://Battle/Jab.png" type="Texture" id=4]
+[ext_resource path="res://Battle/Stomp.png" type="Texture" id=5]
+[ext_resource path="res://Battle/Pound.png" type="Texture" id=6]
+[ext_resource path="res://Battle/Bite.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 7 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 7 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 7 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 15, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 5 )
+region = Rect2( 30, 0, 15, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 5 )
+region = Rect2( 45, 0, 15, 16 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), null ],
+"loop": false,
+"name": "claw",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), null ],
+"loop": false,
+"name": "bite",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), null ],
+"loop": false,
+"name": "pounce",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), null ],
+"loop": false,
+"name": "jab",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), null ],
+"loop": false,
+"name": "chomp",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), null ],
+"loop": false,
+"name": "slam",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=23]
 radius = 4.3592
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=24]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=25]
 radius = 200.0
 
 [node name="Player" type="KinematicBody2D"]
@@ -16,19 +150,27 @@ collision_mask = 76
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.578453, -9.6657 )
+position = Vector2( -0.5, -10 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="IdleTimer" type="Timer" parent="AnimatedSprite"]
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimatedSprite" parent="AnimatedSprite"]
+position = Vector2( 0.5, 10 )
+z_index = 1
+frames = SubResource( 22 )
+animation = "chomp"
+frame = 4
+playing = true
+flip_h = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -0.297335, 5.436 )
-shape = SubResource( 1 )
+shape = SubResource( 23 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 1, 1, 0.584314 )
@@ -36,7 +178,7 @@ position = Vector2( 0.297638, -5.25827 )
 emitting = false
 amount = 1
 one_shot = true
-texture = SubResource( 2 )
+texture = SubResource( 24 )
 direction = Vector2( 0, 0 )
 spread = 180.0
 gravity = Vector2( 0, -8 )
@@ -46,4 +188,4 @@ initial_velocity = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 25 )

@@ -35,8 +35,6 @@ func _ready():
 	state_change_timer.one_shot = true
 	state_change_timer.autostart = true
 	state_change_timer.name = "StateChangeTimer"
-	for letter in name.to_upper():
-		letters[letter] = false
 
 func _physics_process(delta):
 	if position.distance_to(Game.player.position) > DESPAWN_RANGE and type != "WALRUS": 
@@ -68,7 +66,7 @@ func pick_new_target_position():
 	target_position = start_position + Vector2(rand_range(-WANDER_RANGE, WANDER_RANGE), rand_range(-WANDER_RANGE, WANDER_RANGE))
 
 func FightZone_on_body_entered(body):
-	if body.name == "Player": 
+	if body.name == "Player" and Game.invincibility_timer.is_stopped(): 
 		Game.MODE = "battle"
 		Game.switch_scene_battle(self)
 
@@ -95,16 +93,27 @@ func set_positions(current_position):
 	target_position = current_position
 
 func letter_recieved(letter):
-	if letter in name.to_upper() and Game.mouse_hovering == self:
-		letters[letter] = true
-		get_node("../Name/MarginContainer/HBoxContainer/%s" % letter).hide()
-		if all(letters.values()): 
-			get_node("../Name").hide()
-			Game.battle.enemies.erase(self)
-			Game.mouse_hovering = null
-			emit_signal("killed", type, get_parent())
-			queue_free()
-		 
+	if letter in type and Game.mouse_hovering == self:
+		for l in letters.keys():
+			if l.match(letter + "*") and not letters[l]:
+				letters[l] = true
+			
+				$AnimatedSprite/AnimationPlayer.frame = 0
+				$AnimatedSprite/AnimationPlayer.flip_h = randi() % 2
+				$AnimatedSprite/AnimationPlayer.play("punch")
+				get_node("../Name/MarginContainer/HBoxContainer/%s" % l).hide()
+				if all(letters.values()): 
+					get_node("../Name").hide()
+					Game.battle.enemies.erase(self)
+					Game.mouse_hovering = null
+					emit_signal("killed", type, get_parent())
+					if type == "WALRUS": 
+						print(type)
+						get_tree().change_scene("res://UI/WinScreen.tscn")
+					queue_free()
+				break
+			elif Game.order_required and not letters[l]: break
+
 func all(list):
 	for item in list:
 		if item == false:
@@ -116,15 +125,17 @@ func on_mouse_entered():
 	Game.mouse_hovering = self
 	$AnimalSelectionBox.visible = true
 
-func hide_selection_box():
-	$AnimalSelectionBox.visible = false
 func on_mouse_exited():
 	pass
+
+func hide_selection_box():
+	$AnimalSelectionBox.visible = false
 
 func attack(move):
 	emit_signal("attack", move, self)
 	$AnimatedSprite.play(move)
 	switch_animation = "idle"
+	get_node(move).play()
 
 func on_AttackTimer_timeout():
 	attack(Game.pick_one(moves))

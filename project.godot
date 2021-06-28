@@ -11,9 +11,10 @@ config_version=4
 [application]
 
 config/name="Boundless Jam"
-run/main_scene="res://World/World.tscn"
-boot_splash/image="res://icon.png"
-config/icon="res://icon.png"
+run/main_scene="res://UI/TitleScreen.tscn"
+boot_splash/image="res://Cover.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.0745098, 0.345098, 0.0862745, 1 )
 
 [autoload]
 
@@ -24,6 +25,7 @@ Game="*res://Game.gd"
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/return_value_discarded=false
+shapes/collision/shape_color=Color( 0.0392157, 0.701961, 0, 0.419608 )
 
 [display]
 
@@ -56,8 +58,7 @@ texture={
 
 button={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
-, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

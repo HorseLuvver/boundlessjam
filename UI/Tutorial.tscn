@@ -1,0 +1,357 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/small_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/arrow_2.png" type="Texture" id=2]
+[ext_resource path="res://UI/arrow_4.png" type="Texture" id=3]
+[ext_resource path="res://UI/arrow_1.png" type="Texture" id=4]
+[ext_resource path="res://UI/theme.tres" type="Theme" id=5]
+[ext_resource path="res://Battle/Tutorial.gd" type="Script" id=6]
+
+[node name="Tutorial" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DoTutorial" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -120.0
+margin_right = 58.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="DoTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DoTutorial/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 117.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DoTutorial/MarginContainer/VBoxContainer"]
+margin_right = 112.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Would you like to do the tutorial?"
+align = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DoTutorial/MarginContainer/VBoxContainer"]
+margin_top = 61.0
+margin_right = 112.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Yes" type="Button" parent="DoTutorial/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 17.0
+margin_right = 59.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 1 )
+text = "Yes"
+
+[node name="No" type="Button" parent="DoTutorial/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 63.0
+margin_right = 95.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 1 )
+text = "No"
+
+[node name="EnemyNameHint" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -144.0
+margin_right = 147.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="EnemyNameHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnemyNameHint/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 151.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EnemyNameHint/MarginContainer/VBoxContainer"]
+margin_right = 146.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This is the name of the animal. Mouse over the letters to see what their morse code is."
+align = 1
+autowrap = true
+
+[node name="Arrow" type="TextureRect" parent="EnemyNameHint"]
+margin_left = -75.0
+margin_top = 26.0
+margin_right = -11.0
+margin_bottom = 90.0
+rect_rotation = -22.6
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DashBarHint" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -159.0
+margin_right = 35.0
+margin_bottom = -27.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="DashBarHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DashBarHint/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 182.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DashBarHint/MarginContainer/VBoxContainer"]
+margin_right = 177.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This is your dash bar. Hold your button down until it fills up to make a dash, or let go before to make a dot."
+align = 1
+autowrap = true
+
+[node name="Arrow" type="TextureRect" parent="DashBarHint"]
+margin_left = 182.0
+margin_top = 112.0
+margin_right = 246.0
+margin_bottom = 176.0
+texture = ExtResource( 2 )
+
+[node name="PotionHint" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -153.0
+margin_top = -114.0
+margin_right = 40.0
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PotionHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -21.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PotionHint/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 188.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PotionHint/MarginContainer/VBoxContainer"]
+margin_right = 183.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "These are your potions. They come in small, medium, and large and drop from 3, 4, and 5 letter animals respectively."
+align = 1
+autowrap = true
+
+[node name="Arrow" type="TextureRect" parent="PotionHint"]
+margin_left = 221.0
+margin_top = -33.0
+margin_right = 285.0
+margin_bottom = 31.0
+rect_rotation = 31.8
+texture = ExtResource( 3 )
+
+[node name="HealthHint" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -90.0
+margin_right = 32.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( -173, -10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HealthHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HealthHint/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 179.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HealthHint/MarginContainer/VBoxContainer"]
+margin_right = 174.0
+margin_bottom = 97.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This is your health. It has a cap of 100, and can be refilled by potions for 20, 40, or 60 HP."
+align = 1
+autowrap = true
+
+[node name="Arrow" type="TextureRect" parent="HealthHint"]
+margin_left = 195.0
+margin_top = -55.0
+margin_right = 259.0
+margin_bottom = 9.0
+rect_rotation = -17.8
+texture = ExtResource( 4 )
+
+[node name="XPHint" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -107.0
+margin_right = 61.0
+margin_bottom = 19.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="XPHint"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="XPHint/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 208.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="XPHint/MarginContainer/VBoxContainer"]
+margin_right = 203.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This is your XP bar. Each time you kill an animal, you get 1, 2, or 3 XP, depending on name length. (each point reduces damage by 1%)"
+align = 1
+autowrap = true
+
+[node name="Arrow" type="TextureRect" parent="XPHint"]
+margin_left = 207.0
+margin_top = -29.0
+margin_right = 271.0
+margin_bottom = 35.0
+rect_rotation = -17.3
+texture = ExtResource( 4 )
+
+[connection signal="pressed" from="DoTutorial/MarginContainer/VBoxContainer/HBoxContainer/Yes" to="." method="on_DoTutorial_Yes_pressed"]
+[connection signal="pressed" from="DoTutorial/MarginContainer/VBoxContainer/HBoxContainer/No" to="." method="on_DoTutorial_No_pressed"]

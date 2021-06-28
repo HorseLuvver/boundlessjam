@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wsssis.ogg-28dd68dda2961e71f5efd4746856ea21.oggstr"
+
+[deps]
+
+source_file="res://Battle/wsssis.ogg"
+dest_files=[ "res://.import/wsssis.ogg-28dd68dda2961e71f5efd4746856ea21.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

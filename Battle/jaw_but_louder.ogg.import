@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/jaw_but_louder.ogg-3a3eb9dacc55d0b28c033a36c241d216.oggstr"
+
+[deps]
+
+source_file="res://Battle/jaw_but_louder.ogg"
+dest_files=[ "res://.import/jaw_but_louder.ogg-3a3eb9dacc55d0b28c033a36c241d216.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

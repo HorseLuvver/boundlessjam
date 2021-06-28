@@ -1,0 +1,137 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Animals/animal_chase_range.tres" type="Shape2D" id=1]
+[ext_resource path="res://Animals/animal_fight_range.tres" type="Shape2D" id=2]
+[ext_resource path="res://Animals/animal_selection_box.png" type="Texture" id=3]
+[ext_resource path="res://Animals/Boss/Walrus.gd" type="Script" id=4]
+[ext_resource path="res://Animals/Boss/walrus.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 144, 96, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 48, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 144, 48, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "chomp",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": false,
+"name": "slam",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 5.65471
+
+[node name="Walrus" type="KinematicBody2D"]
+collision_layer = 32
+collision_mask = 13
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 13 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.749149, 4.68221 )
+shape = SubResource( 14 )
+
+[node name="FightZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FightZone"]
+visible = false
+shape = ExtResource( 2 )
+
+[node name="ChaseZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseZone"]
+visible = false
+shape = ExtResource( 1 )
+disabled = true
+
+[node name="WanderTimer" type="Timer" parent="."]
+
+[node name="AnimalSelectionBox" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 7.745 )
+scale = Vector2( 3, 3 )
+z_index = -1
+texture = ExtResource( 3 )
